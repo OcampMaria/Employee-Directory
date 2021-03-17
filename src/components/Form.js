@@ -29,17 +29,17 @@ const Form = ({ setInputText, employees, setEmployees, inputText, setStatus }) =
         value={inputText}
         onChange={inputTextHandler}
         type="text"
-        className="todo-input"
+        className="employee-input"
       />
       <button
         onClick={submitEmployeeHandler}
-        className="todo-button"
+        className="employee-button"
         type="submit"
       >
         <i className="fas fa-plus-square"></i>
       </button>
       <div className="select">
-        <select onChange={statusHandler} name="todos" className="filter-todo">
+        <select onChange={statusHandler} name="todos" className="filter-employee">
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="uncompleted">Uncompleted</option>

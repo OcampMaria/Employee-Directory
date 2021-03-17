@@ -1,8 +1,12 @@
+import axios from "axios";
 import React, {useState, useEffect} from "react";
 import './App.css';
 // importing components
 import Form from "./components/Form";
 import Table from "./components/Table";
+import API from "./utils/API"
+
+
 
 function App() {
   //state
@@ -10,6 +14,7 @@ function App() {
   const [employees, setEmployees] = useState([]);
   const [status, setStatus] = useState("all");
   const [filteredEmployees, setFilteredEmployees]= useState([]);
+  const [data, setData] = useState([]);
 
   //Run Once when the app starts
   useEffect(() =>{
@@ -21,9 +26,18 @@ function App() {
   useEffect(() => {
     filterHandler();
     saveLocalEmployees();
+    getData();
+
   }, [employees, status]);
 
   //functions
+  const getData = () => {
+    API.getEmployees()
+    .then(res => setData(res.data)
+    )
+    . catch (err => console.log(err));
+  };
+
   const filterHandler =() => {
     switch(status){
       case "completed":
@@ -70,6 +84,8 @@ function App() {
       setEmployees={setEmployees} 
       employees={employees}
       filteredEmployees={filteredEmployees}
+      data={data}
+      setData={setData}
       />
       
     </div>
