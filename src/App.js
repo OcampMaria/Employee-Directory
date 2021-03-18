@@ -31,9 +31,10 @@ function App() {
   }, [employees, status]);
 
   //functions
+
   const getData = () => {
     API.getEmployees()
-    .then(res => setData(res.data)
+    .then(res => setData(res.data.results)
     )
     . catch (err => console.log(err));
   };
