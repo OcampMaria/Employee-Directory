@@ -6,7 +6,8 @@ const Table = ({ employees, setEmployees, filteredEmployees, data, setData }) =>
   return (
     <div className="employee-container">
       <ul className="employee-list">
-        {filteredEmployees.map((employee) => (
+        {data.map((employee) => (
+          console.log(data),
           <Employee
             setEmployees={setEmployees}
             setData={setData}

@@ -8,7 +8,7 @@ const Employee = ({ text, employee, employees, setEmployees, data, setData }) =>
 
   return (
     <div className="employee">
-      <li className="employee-item">{text}</li>
+      <li className="employee-item">{employee.name.first}</li>
 
       <button onClick={deleteHandler} className="trash-btn">
         <i className="fas fa-trash"></i>
