@@ -16,10 +16,6 @@ const Employee = ({ text, employee, employees, setEmployees, data, setData }) =>
       <button onClick={deleteHandler} className="trash-btn">
         <i className="fas fa-trash"></i>
       </button>
-
-      
-
-      
     </div>
     
   );

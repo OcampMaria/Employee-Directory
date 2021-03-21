@@ -19,6 +19,7 @@ function App() {
   //Run Once when the app starts
   useEffect(() =>{
     getLocalEmployees();
+    getData();
 
   }, []); 
 
@@ -26,7 +27,6 @@ function App() {
   useEffect(() => {
     filterHandler();
     saveLocalEmployees();
-    getData();
 
   }, [employees, status]);
 
@@ -54,7 +54,7 @@ function App() {
 
   //save to local storage
   const saveLocalEmployees = () => {
-    localStorage.setItem("employees", JSON.stringify(employees));
+    localStorage.setItem("employees", JSON.stringify(data));
   };
 
   const getLocalEmployees = () => {
@@ -79,6 +79,9 @@ function App() {
         setEmployees={setEmployees} 
         setInputText= {setInputText}
         setStatus={setStatus}
+        data={data}
+        setData={setData}
+      
         
       />
       <Table 

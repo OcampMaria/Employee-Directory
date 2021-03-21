@@ -7,7 +7,6 @@ const Table = ({ employees, setEmployees, filteredEmployees, data, setData }) =>
     <div className="employee-container">
       <ul className="employee-list">
         {data.map((employee) => (
-          console.log(data),
           <Employee
             setEmployees={setEmployees}
             setData={setData}
@@ -15,7 +14,7 @@ const Table = ({ employees, setEmployees, filteredEmployees, data, setData }) =>
             employees={employees}
             employee={employee}
             text={employee.text}
-            key={employee.id}
+            key={employee.cell}
           />
         ))}
       </ul>
