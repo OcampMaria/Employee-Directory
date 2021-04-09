@@ -1,51 +1,49 @@
-import axios from "axios";
-import React, {useState, useEffect} from "react";
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 // importing components
 import Form from "./components/Form";
 import Table from "./components/Table";
-import API from "./utils/API"
-
-
+import API from "./utils/API";
 
 function App() {
   //state
   const [inputText, setInputText] = useState("");
   const [employees, setEmployees] = useState([]);
   const [status, setStatus] = useState("all");
-  const [filteredEmployees, setFilteredEmployees]= useState([]);
+  const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [data, setData] = useState([]);
 
   //Run Once when the app starts
-  useEffect(() =>{
+  useEffect(() => {
     getLocalEmployees();
     getData();
-
-  }, []); 
+  }, []);
 
   //UseEffect
   useEffect(() => {
     filterHandler();
     saveLocalEmployees();
-
   }, [employees, status]);
 
   //functions
 
   const getData = () => {
     API.getEmployees()
-    .then(res => setData(res.data.results)
-    )
-    . catch (err => console.log(err));
+      .then((res) => setData(res.data.results))
+      .catch((err) => console.log(err));
   };
 
-  const filterHandler =() => {
-    switch(status){
+  const filterHandler = () => {
+    switch (status) {
       case "completed":
-        setFilteredEmployees(employees.filter((employee) => employee.completed === true ))
+        setFilteredEmployees(
+          employees.filter((employee) => employee.completed === true)
+        );
         break;
-      case 'uncompleted':
-        setFilteredEmployees(employees.filter((employee) => employee.completed === false ))
+      case "uncompleted":
+        setFilteredEmployees(
+          employees.filter((employee) => employee.completed === false)
+        );
       default:
         setFilteredEmployees(employees);
         break;
@@ -58,14 +56,14 @@ function App() {
   };
 
   const getLocalEmployees = () => {
-    if (localStorage.getItem("employees") === null){
+    if (localStorage.getItem("employees") === null) {
       localStorage.setItem("employees", JSON.stringify([]));
-    }else{
-     let employeeLocal = JSON.parse(localStorage.getItem("employees"));
+    } else {
+      let employeeLocal = JSON.parse(localStorage.getItem("employees"));
 
-     setEmployees(employeeLocal)
+      setEmployees(employeeLocal);
     }
-  }
+  };
 
   return (
     <div className="App">
@@ -73,25 +71,26 @@ function App() {
         <h1>Employee Directory</h1>
       </header>
 
-      <Form 
-        inputText={inputText} 
-        employees={employees} 
-        setEmployees={setEmployees} 
-        setInputText= {setInputText}
+      <Form
+        inputText={inputText}
+        employees={employees}
+        setEmployees={setEmployees}
+        setInputText={setInputText}
         setStatus={setStatus}
         data={data}
         setData={setData}
-      
-        
       />
-      <Table 
-      setEmployees={setEmployees} 
-      employees={employees}
-      filteredEmployees={filteredEmployees}
-      data={data}
-      setData={setData}
+      <Table
+        setEmployees={setEmployees}
+        employees={employees}
+        filteredEmployees={filteredEmployees}
+        data={data.filter((employee) =>
+          `${employee.name.first} ${employee.name.last}`
+            .toLowerCase()
+            .includes(inputText.toLowerCase())
+        )}
+        setData={setData}
       />
-      
     </div>
   );
 }

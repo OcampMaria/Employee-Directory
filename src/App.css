@@ -37,18 +37,23 @@ form button:hover {
   background: #7847ff;
   color: white;
 }
+
+
+
+table, th {
+  width:100%
+}
+
+
 .employee-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.employee-list {
-  min-width: 30%;
-  list-style: none;
-}
 
-.employee {
+
+/* .employee {
   margin: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -59,7 +64,7 @@ form button:hover {
   justify-content: space-between;
   align-items: center;
   transition: all 1s ease;
-}
+} */
 .filter-employee {
   padding: 1rem;
 }

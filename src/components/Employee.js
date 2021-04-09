@@ -1,23 +1,26 @@
 import React from "react";
 
-const Employee = ({ text, employee, employees, setEmployees, data, setData }) => {
-  //Events
-  const deleteHandler = () => {
-    setEmployees(employees.filter((el) => el.id !== employee.id));
-  };
-
+const Employee = ({ employee }) => {
   return (
-    <div className="employee">
-      <li className="employee-item">{employee.name.first}</li>
-      <li className="employee-item">{employee.name.last}</li>
-      <li className="employee-item">{employee.cell}</li>
-     
-
-      <button onClick={deleteHandler} className="trash-btn">
-        <i className="fas fa-trash"></i>
-      </button>
-    </div>
-    
+ 
+    <table class="table is-bordered is-striped  is-hoverable is-fullwidth
+    ">
+      <tr>
+        <th title="Photo">Photo</th>
+        <th title="First Name">First Name</th>
+        <th title="Last Name">Last Name</th>
+        <th title="Phone Number">Phone Number</th>
+      </tr>
+      <tr>
+        <td>
+          <img src={employee.picture.medium} alt="employee" />
+        </td>
+        <td>{employee.name.first}</td>
+        <td>{employee.name.last}</td>
+        <td>{employee.cell}</td>
+      </tr>
+      
+    </table>
   );
 };
 
